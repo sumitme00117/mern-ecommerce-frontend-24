@@ -2,8 +2,6 @@ import AdminSidebar from "../../../components/admin/AdminSidebar";
 import { DoughnutChart, PieChart } from "../../../components/admin/Charts";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../redux/store";
-import { CustomError } from "../../../types/api-types";
-import toast from "react-hot-toast";
 import { usePieQuery } from "../../../redux/api/dashboardAPI";
 import { Skeleton } from "../../../components/loader";
 import { Navigate } from "react-router-dom";
