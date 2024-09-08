@@ -29,32 +29,32 @@ export const responseToast = (
 };
 
 export const getLastMonths = () => {
+  const currentDate = moment();
 
-  const currentDate = moment()
+  currentDate.date(1);
 
-  currentDate.date(1)
-
-  const last6Months: string[] = []
-  const last12Months: string[] = []
+  const last6Months: string[] = [];
+  const last12Months: string[] = [];
 
   for (let i = 0; i < 6; i++) {
-    const monthDate = currentDate.clone().subtract(i, "months")
+    const monthDate = currentDate.clone().subtract(i, "months");
     const monthName = monthDate.format("MMMM");
-    last6Months.unshift(monthName)
-    
+    last6Months.unshift(monthName);
   }
 
   for (let i = 0; i < 12; i++) {
-    const monthDate = currentDate.clone().subtract(i, "months")
+    const monthDate = currentDate.clone().subtract(i, "months");
     const monthName = monthDate.format("MMMM");
-    last12Months.unshift(monthName)
-    
+    last12Months.unshift(monthName);
   }
 
   return {
     last12Months,
-    last6Months
-  }
+    last6Months,
+  };
+};
 
-
-}
+export const transformImage = (url: string, width = 200) => {
+  const newUrl = url.replace("upload/", `upload/dpr_auto/w_${width}/`);
+  return newUrl;
+};
