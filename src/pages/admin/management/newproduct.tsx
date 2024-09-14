@@ -44,7 +44,9 @@ const NewProduct = () => {
       formData.set("category", category);
 
       photos.file.forEach((file) => {
-        formData.append("photos", file);
+
+        formData.append("photos", file)
+
       });
       for (let [key, value] of formData.entries()) {
         if (value instanceof File) {
