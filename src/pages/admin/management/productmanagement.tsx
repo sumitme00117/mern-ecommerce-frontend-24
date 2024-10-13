@@ -23,13 +23,14 @@ const Productmanagement = () => {
 
   const { data, isLoading, isError } = useProductDetailsQuery(params.id!);
 
-  const { price, photos, name, stock, category} =
+  const { price, photos, name, stock, category, description} =
     data?.product || {
       photos: [],
       category: "",
       name: "",
       stock: 0,
       price: 0,
+      description: ""
     };
 
   const [btnLoading, setBtnLoading] = useState<boolean>(false);
@@ -37,6 +38,7 @@ const Productmanagement = () => {
   const [stockUpdate, setStockUpdate] = useState<number>(stock);
   const [nameUpdate, setNameUpdate] = useState<string>(name);
   const [categoryUpdate, setCategoryUpdate] = useState<string>(category);
+  const [descriptionUpdate, setDescriptionUpdate] = useState<string>(description)
 
 
   const [updateProduct] = useUpdateProductMutation();
@@ -54,6 +56,7 @@ const Productmanagement = () => {
       const formData = new FormData();
 
       if (nameUpdate) formData.set("name", nameUpdate);
+      if (descriptionUpdate) formData.set("description", descriptionUpdate);
       if (priceUpdate) formData.set("price", priceUpdate.toString());
       if (stockUpdate !== undefined)
         formData.set("stock", stockUpdate.toString());
@@ -95,6 +98,7 @@ const Productmanagement = () => {
       setPriceUpdate(data.product.price);
       setStockUpdate(data.product.stock);
       setCategoryUpdate(data.product.category);
+      setDescriptionUpdate(data.product.description)
     }
   }, [data]);
 
@@ -134,6 +138,17 @@ const Productmanagement = () => {
                     onChange={(e) => setNameUpdate(e.target.value)}
                   />
                 </div>
+
+                <div>
+              <label>Description</label>
+              <textarea
+                required
+                placeholder="Description"
+                value={descriptionUpdate}
+                onChange={(e) => setDescriptionUpdate(e.target.value)}
+              />
+            </div>
+
                 <div>
                   <label>Price</label>
                   <input
@@ -170,9 +185,7 @@ const Productmanagement = () => {
 
                 {photosFiles.error && <p>{photosFiles.error}</p>}
                 {photosFiles.preview && (
-                  <div
-                    style={{ display: "flex", gap: "1rem", overflowX: "auto" }}
-                  >
+                  <div style={{ display: "flex", gap: "1rem", overflowX: "auto"}}>
                     {photosFiles.preview.map((img, i) => (
                       <img
                         style={{ width: 100, height: 100, objectFit: "cover" }}

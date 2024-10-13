@@ -13,6 +13,7 @@ import ProtectedRoute from "./components/protected-route";
 
 const Home = lazy(() => import("./pages/home"));
 const Search = lazy(() => import("./pages/search"));
+const ProductDetails = lazy(() => import("./pages/product-details"));
 const Cart = lazy(() => import("./pages/cart"));
 const Shipping = lazy(() => import("./pages/shipping"));
 const Login = lazy(() => import("./pages/login"));
@@ -39,6 +40,15 @@ const ProductManagement = lazy(
 );
 const TransactionManagement = lazy(
   () => import("./pages/admin/management/transactionmanagement")
+);
+const DiscountManagement = lazy(
+  () => import("./pages/admin/management/discountmanagement")
+);
+const NewDiscount = lazy(
+  () => import("./pages/admin/management/newdiscount")
+);
+const Discount = lazy(
+  () => import("./pages/admin/discount")
 );
 
 const App = () => {
@@ -69,6 +79,7 @@ const App = () => {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/search" element={<Search />} />
+          <Route path="/product/:id" element={<ProductDetails />} />
           <Route path="/cart" element={<Cart />} />
           {/* Not logged in route */}
           <Route
@@ -102,6 +113,8 @@ const App = () => {
             <Route path="/admin/product" element={<Products />} />
             <Route path="/admin/customer" element={<Customers />} />
             <Route path="/admin/transaction" element={<Transaction />} />
+            <Route path="/admin/discount" element={<Discount />} />
+
             {/* Charts */}
             <Route path="/admin/chart/bar" element={<Barcharts />} />
             <Route path="/admin/chart/pie" element={<Piecharts />} />
@@ -119,6 +132,15 @@ const App = () => {
             <Route
               path="/admin/transaction/:id"
               element={<TransactionManagement />}
+            />
+            <Route
+              path="/admin/discount/new"
+              element={<NewDiscount />}
+            />
+            
+            <Route
+              path="/admin/discount/:id"
+              element={<DiscountManagement />}
             />
           </Route>
           <Route path="*" element={<NotFound/>}/>

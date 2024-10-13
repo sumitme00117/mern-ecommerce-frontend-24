@@ -13,10 +13,25 @@ export type Product = {
   price: number;
   stock: number;
   category: string;
+  ratings: number;
+  numOfReviews: number;
+  description: string;
   photos: {
     url: string;
     public_id: string;
   }[];
+  _id: string;
+};
+
+export type Review = {
+  rating: number;
+  comment: string;
+  product: string;
+  user: {
+    name: string;
+    photo: string;
+    _id: string;
+  };
   _id: string;
 };
 
@@ -120,16 +135,21 @@ export type Pie = {
   };
 };
 
-
 export type Bar = {
-  users: number[],
-  products: number[],
-  orders: number[]
+  users: number[];
+  products: number[];
+  orders: number[];
 };
 
 export type Line = {
-  users: number[],
-  products: number[],
-  discount: number[],
-  revenue: number[]
+  users: number[];
+  products: number[];
+  discount: number[];
+  revenue: number[];
+};
+
+export type CouponType = {
+  code: string;
+  amount: number;
+  _id: string;
 };

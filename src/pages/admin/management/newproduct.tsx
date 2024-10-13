@@ -16,6 +16,7 @@ const NewProduct = () => {
   const [category, setCategory] = useState<string>("");
   const [price, setPrice] = useState<number>(1000);
   const [stock, setStock] = useState<number>(1);
+  const [description, setDescription] = useState<string>("")
   
 
   const [newProduct] = useNewProductMutation();
@@ -38,6 +39,7 @@ const NewProduct = () => {
       const formData = new FormData();
 
       formData.set("name", name);
+      formData.set("description", description);
       formData.set("price", price.toString());
       formData.set("stock", stock.toString());
 
@@ -87,6 +89,17 @@ const NewProduct = () => {
                 onChange={(e) => setName(e.target.value)}
               />
             </div>
+
+            <div>
+              <label>Description</label>
+              <textarea
+                required
+                placeholder="Description"
+                value={description}
+                onChange={(e) => setDescription(e.target.value)}
+              />
+            </div>
+
             <div>
               <label>Price</label>
               <input
